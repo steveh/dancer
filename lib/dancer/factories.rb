@@ -13,7 +13,7 @@ class Dancer
   def self.extent(start_at, size, step, exclude_end = false)
     offset = exclude_end ? 0 : 1
 
-    end_at = if size.negative?
+    end_at = if size < 0
       start_at + (step * size) + offset
     else
       start_at + (step * size) - offset
