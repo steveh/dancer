@@ -1,3 +1,3 @@
-module Dancer
+class Dancer
   VERSION = "0.1.0"
 end
