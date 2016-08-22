@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Steve Hoeksema"]
   spec.email         = ["steve@kotiri.com"]
 
-  spec.summary       = "Dancer steps through Time"
-  spec.description   = "Dancer steps through Time"
+  spec.summary       = "Dancer steps in Time"
+  spec.description   = "A small library to move forward or backward through Time in predefined steps"
   spec.homepage      = "https://github.com/steveh/dancer"
   spec.license       = "MIT"
 

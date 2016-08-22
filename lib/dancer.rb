@@ -38,7 +38,7 @@ class Dancer
   def size
     return unless bounded?
 
-    ((end_at.public_send(operator, offset) - start_at) / step).abs
+    ((end_at.public_send(operator, offset) - start_at) / step).abs.to_i
   end
 
   alias count size
@@ -94,14 +94,10 @@ class Dancer
   def duration
     return unless bounded?
 
-    (end_at - start_at).abs + offset
+    (end_at - start_at).abs.to_i + offset
   end
 
   alias to_i duration
-
-  def bounded?
-    start_at && end_at
-  end
 
   def to_s
     "#{start_at.inspect}#{exclude_end? ? "..." : ".."}#{end_at.inspect} (step: #{step})"
@@ -112,6 +108,10 @@ class Dancer
   end
 
   protected
+
+  def bounded?
+    start_at && end_at
+  end
 
   def offset
     exclude_end? ? 0 : 1
