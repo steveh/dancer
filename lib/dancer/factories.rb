@@ -24,8 +24,11 @@ class Dancer
 
   # Create a timeslice from a list of start times
   def self.keys(keys, step, exclude_end = false)
+    offset = exclude_end ? 0 : 1
+
     start_at = keys.min
-    end_at = keys.max ? (keys.max + step - 1) : nil
+
+    end_at = keys.max ? (keys.max + (step * offset) - offset) : nil
 
     new(start_at, end_at, step, exclude_end)
   end

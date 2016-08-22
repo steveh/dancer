@@ -57,6 +57,14 @@ RSpec.describe "Forward" do
     subject(:dancer) { defined.new(start_at, end_at) }
 
     it_behaves_like "four minute dancer"
+
+    it "responds to to_s" do
+      expect(dancer.to_s).to eq("2016-08-01 08:00:00 UTC..2016-08-01 08:01:59 UTC (step: 30)")
+    end
+
+    it "responds to inspect" do
+      expect(dancer.inspect).to eq("#<Dancer 2016-08-01 08:00:00 UTC..2016-08-01 08:01:59 UTC (step: 30)>")
+    end
   end
 
   describe "#range" do
