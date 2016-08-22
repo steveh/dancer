@@ -38,7 +38,7 @@ class Dancer
   def size
     return unless bounded?
 
-    ((end_at.public_send(operator, 1) - start_at) / step).abs
+    ((end_at.public_send(operator, offset) - start_at) / step).abs
   end
 
   alias count size
@@ -48,7 +48,11 @@ class Dancer
   def range
     return unless bounded?
 
-    start_at..end_at
+    if exclude_end?
+      start_at...end_at
+    else
+      start_at..end_at
+    end
   end
 
   # Enumerator for each start time
@@ -71,9 +75,16 @@ class Dancer
 
     current = start_at
     while current.public_send(comparator, end_at)
-      current_end_at = current.public_send(operator, step) - (0.public_send(operator, 1))
-      current_range = current..current_end_at
+      current_end_at = current.public_send(operator, step) - (0.public_send(operator, offset))
+
+      current_range = if exclude_end?
+        current...current_end_at
+      else
+        current..current_end_at
+      end
+
       yield current_range
+
       current = current.public_send(operator, step)
     end
     self
@@ -83,7 +94,7 @@ class Dancer
   def duration
     return unless bounded?
 
-    (end_at - start_at).abs + 1
+    (end_at - start_at).abs + offset
   end
 
   alias to_i duration
@@ -93,10 +104,16 @@ class Dancer
   end
 
   def to_s
-    "#{start_at.inspect}..#{end_at.inspect} (step: #{step})"
+    "#{start_at.inspect}#{exclude_end? ? "..." : ".."}#{end_at.inspect} (step: #{step})"
   end
 
   def inspect
     "#<Dancer #{to_s}>"
+  end
+
+  protected
+
+  def offset
+    exclude_end? ? 0 : 1
   end
 end

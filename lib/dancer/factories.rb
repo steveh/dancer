@@ -11,7 +11,13 @@ class Dancer
 
   # Create a timeslice from a start time and a number of a points
   def self.extent(start_at, size, step, exclude_end = false)
-    end_at = start_at + (step * size) - 1
+    offset = exclude_end ? 0 : 1
+
+    end_at = if size.negative?
+      start_at + (step * size) + offset
+    else
+      start_at + (step * size) - offset
+    end
 
     new(start_at, end_at, step, exclude_end)
   end
