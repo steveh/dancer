@@ -65,14 +65,14 @@ RSpec.describe "Forward exclude end" do
     it_behaves_like "four minute dancer"
   end
 
-  describe "#keys" do
-    subject(:dancer) { defined.keys([start_at, end_at], true) }
+  describe "#extent" do
+    subject(:dancer) { defined.extent(start_at, 4, true) }
 
     it_behaves_like "four minute dancer"
   end
 
-  describe "#extent" do
-    subject(:dancer) { defined.extent(start_at, 4, true) }
+  describe "#keys" do
+    subject(:dancer) { defined.keys([start_at, end_at], true) }
 
     it_behaves_like "four minute dancer"
   end
