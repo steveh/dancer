@@ -2,6 +2,9 @@
 
 A small library to move forward or backward through Time in predefined steps.
 
+[![Build Status](https://travis-ci.org/steveh/dancer.svg?branch=master)](https://travis-ci.org/steveh/dancer)
+[![Code Climate](https://codeclimate.com/github/steveh/dancer/badges/gpa.svg)](https://codeclimate.com/github/steveh/dancer)
+
 
 ## Installation
 
